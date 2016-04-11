@@ -1,0 +1,107 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <img src="http://www.ansolutions.com/wp-content/themes/ANS/images/header-logo.jpg" />
+    </div>
+    <div style="height:91px;" class="col-md-4">
+      <button style="margin-top:25px;float:right;" class="animated fadeIn btn btn-md btn-info" type="button" name="next" ng-click="group1.save()">Save and Next</button>
+    </div>
+  </div>
+  <div style="padding-top:50px;" class="row panel panel-default row">
+    <div class="col-md-3">
+      <div class="list-group">
+        <span href="#" class="list-group-item" style="color:#696969;background-color:#fff;border-color:#fff;">
+                  Progress {{ group1.progress }}%
+                  <div class="progress">
+                    <div class="progress-bar" animate="true" role="progressbar" aria-valuenow="{{ group1.progress }}"
+                          aria-valuemin="0" aria-valuemax="100" style="width:{{progress}}%">
+                      </div>
+                  </div>
+                </span>
+        <a href="" class="active list-group-item">
+          <i>Company Overview</i>
+        </a>
+        <a href="/group2?id={{group1.ra.data.Id}}" class="list-group-item">
+          <i>Technology Planning</i>
+        </a>
+        <a href="/group3?id={{group1.ra.data.Id}}" class="list-group-item">
+          <i>Regulatory</i>
+        </a>
+        <a href="/group4" class="list-group-item">
+          <i>Network Infrastructure</i>
+        </a>
+        <a href="/group5" class="list-group-item">
+          <i>Group 5</i>
+        </a>
+        <a href="/group6" class="list-group-item">
+          <i>Group 6</i>
+        </a>
+      </div>
+    </div>
+
+    <div class="animated fadeIn col-md-9">
+      <div class="row">
+        <div class="col-xs-12">
+          <h3 style="padding-bottom:20px;text-align:center;">{{ section_title }}</h3>
+          <p class="animated fadeIn" style="color:#FF4500;text-align:center;" ng-if="msgs.error && group1.ra.data.Locations__c">
+            {{ msgs.error }} <i class="fa fa-close"></i>
+          </p>
+          <p class="animated fadeIn" style="color:#32CD32;text-align:center;" ng-if="msgs.success">
+            {{ msgs.success }} <i class="fa fa-check"></i>
+          </p>
+          <form class="form-horizontal" role="form">
+
+            <div class="form-group">
+
+              <label for="Locations__c" class="col-md-6 control-label">
+                # of Locations
+              </label>
+              <div class="col-md-4">
+                <input id="Locations__c" class="form-control" type="number" name="Locations__c" ng-model="group1.ra.data.Locations__c" value=0>
+              </div>
+            </div>
+          </form>
+          <div class="row">
+            <div class="col-md-12">
+              <form class="form-horizontal" role="form">
+                <div class="form-group">
+                  <label for="Employees__c" class="col-md-6 control-label">
+                    # of Employees (breakdown per location in comments if possible)
+                  </label>
+                  <div class="col-md-4">
+                    <input id="Employees__c" class="form-control" type="number" name="Employees__c" ng-model="group1.ra.data.Employees__c" value="0">
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-12">
+              <form class="form-horizontal" role="form">
+                <div class="form-group">
+                  <label for="Servers__c" class="col-md-6 control-label">
+                    # of Servers
+                  </label>
+                  <div class="col-md-4">
+                    <input id="Servers__c" class="form-control" type="number" name="Servers__c" ng-model="group1.ra.data.Servers__c">
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-12">
+              <form class="form-horizontal" role="form">
+                <div class="form-group">
+                  <label for="Business_Comments__c" class="col-md-6 control-label">
+                    Comments
+                  </label>
+                  <div class="col-md-4">
+                    <textarea rows="6" id="Business_Comments__c" class="form-control" name="Business_Comments__c" ng-model="group1.ra.data.Business_Comments__c"></textarea>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

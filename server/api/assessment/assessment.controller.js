@@ -79,7 +79,11 @@ exports.show = function(req, res) {
     followRedirect: true,
     maxRedirects: 10
     }, function(error, response, body) {
-      res.send(response.body);
+      if(response.body){
+        res.send(response.body);
+      }else{
+        res.send('Disconnected from Salesforce');
+      }
 });
   /*Assessment.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))

@@ -1,1 +1,120 @@
-<div>This is the regulatory view.</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <img src="http://www.ansolutions.com/wp-content/themes/ANS/images/header-logo.jpg" />
+
+    </div>
+    <div style="height:91px;" class="col-md-4">
+      <button style="margin-top:25px;float:right;" class="animated fadeIn btn btn-md btn-info" type="button" name="next" ng-click="regulatory.save()">Save and Next</button>
+    </div>
+  </div>
+
+  <div style="padding-top:50px;" class="row panel panel-default">
+    <div class="col-md-3">
+      <div class="list-group">
+        <span href="#" class="list-group-item" style="color:#696969;background-color:#fff;border-color:#fff;">
+              Progress {{ regulatory.progress }}%
+              <div class="progress">
+                <div class="progress-bar" animate="true" role="progressbar" aria-valuenow="{{ group1.progress }}"
+                      aria-valuemin="0" aria-valuemax="100" style="width:{{ regulatory.progress }}%">
+                  </div>
+              </div>
+            </span>
+        <a href="/group1?id={{regulatory.ra.data.Id}}" class="list-group-item">
+          <i>Company Overview</i>
+        </a>
+        <a href="" class="active list-group-item">
+          <i>Technology Planning</i>
+        </a>
+        <a href="/group3?id={{regulatory.ra.data.Id}}" class="list-group-item">
+          <i>Regulatory</i>
+        </a>
+        <a href="/group4?id={{group1.ra.data.Id}}" class="list-group-item">
+          <i>Network Infrastructure</i>
+        </a>
+        <a href="/group5" class="list-group-item">
+          <i>Group 5</i>
+        </a>
+        <a href="/group6" class="list-group-item">
+          <i>Group 6</i>
+        </a>
+      </div>
+    </div>
+
+    <div style="max-height:900px;overflow-y: scroll" class="animated fadeIn col-md-9">
+      <div class="row">
+        <div class="col-xs-12">
+          <h3 style="padding-bottom:20px;text-align:center;">{{ section_title }}</h3>
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="Changes_Last_12_Months__c" class="col-md-4 control-label">
+                Have there been any changes in the past 12 months that impact technology?
+              </label>
+              <div class="col-md-6">
+                <textarea rows="6" cols="6" type="text"  id="Changes_Last_12_Months__c" class="form-control" ng-model="regulatory.ra.data.Changes_Last_12_Months__c" name="Changes_Last_12_Months__c" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="Upcoming_Changes__c" class="col-md-4 control-label">
+                Are there any upcoming changes that will increase the dependence on technology?
+              </label>
+              <div class="col-md-6">
+                <textarea rows="6" cols="6" type="text"  id="Upcoming_Changes__c" class="form-control" ng-model="regulatory.ra.data.Upcoming_Changes__c" name="Upcoming_Changes__c" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="Hardware_Replacement_Frequency__c" class="col-md-4 control-label">
+                How often do you upgrade or replace your hardware?
+              </label>
+              <div class="col-md-6">
+                <select id="Hardware_Replacement_Frequency__c" class="form-control" name="Hardware_Replacement_Frequency__c" ng-model="regulatory.ra.data.Hardware_Replacement_Frequency__c" value="{{regulatory.ra.data.Hardware_Replacement_Frequency__c}}">
+                  <option value="When it fails">
+                    When it fails
+                  </option>
+                  <option value="Every year">
+                    Every year
+                  </option>
+                  <option value="End of warranty">
+                    End of warranty
+                  </option>
+                  <option value="Not sure">
+                    Not sure
+                  </option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="Hardware_Under_Warranty__c" class="col-md-4 control-label">
+                Is your hardware currently under warranty?
+              </label>
+              <div class="col-md-6">
+                <div class="checkbox">
+                  <label> <input type="checkbox" ng-model="regulatory.ra.data.Hardware_Under_Warranty__c" value="{{regulatory.ra.data.Hardware_Under_Warranty__c}}"></label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

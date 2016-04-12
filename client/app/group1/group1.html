@@ -15,7 +15,7 @@
                   Progress {{ group1.progress }}%
                   <div class="progress">
                     <div class="progress-bar" animate="true" role="progressbar" aria-valuenow="{{ group1.progress }}"
-                          aria-valuemin="0" aria-valuemax="100" style="width:{{progress}}%">
+                          aria-valuemin="0" aria-valuemax="100" style="width:{{group1.progress}}%">
                       </div>
                   </div>
                 </span>
@@ -39,8 +39,10 @@
         </a>
       </div>
     </div>
-
-    <div class="animated fadeIn col-md-9">
+    <div ng-if="!group1.ra.data" class="animated fadeIn col-md-9">
+      <h2 style="text-align:center;padding-top:100px;color:#000;">Loading...<i class="fa fa-circle-o-notch" aria-hidden="false"></i></h2>
+    </div>
+    <div ng-if="group1.ra.data" class="animated fadeIn col-md-9">
       <div class="row">
         <div class="col-xs-12">
           <h3 style="padding-bottom:20px;text-align:center;">{{ section_title }}</h3>
@@ -105,3 +107,4 @@
     </div>
   </div>
 </div>
+<footer></footer>

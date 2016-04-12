@@ -17,8 +17,10 @@ class SignupController {
   register(form) {
     this.submitted = true;
 
+
     if (form.$valid) {
       if(this.$routeParams.id){
+        this.authenticating = true;
         this.Auth.createUser({
           name:this.user.name,
           raId:this.$routeParams.id,

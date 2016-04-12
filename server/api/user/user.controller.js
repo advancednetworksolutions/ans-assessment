@@ -68,10 +68,9 @@ exports.create = function(req, res, next) {
           })
           .catch(validationError(res));
       }else{
-        return res.status(response.statusCode);
+         res.send('Could not authenticate the given access code');
       }
     }
-
   });
 
 };

@@ -1,12 +1,15 @@
 <div class="row">
   <div class="col-md-12">
       <h2 style="text-align:center">
-          <img style="margin-top:-13px;" src="http://www.ansolutions.com/wp-content/themes/ANS/images/header-logo.jpg"/> 
+          <img style="margin-top:-13px;" src="http://www.ansolutions.com/wp-content/themes/ANS/images/header-logo.jpg"/>
       </h2>
   </div>
 </div>
 <div style="padding-top:50px;" class="container">
-  <div class="animated fadeIn row">
+  <div ng-if="!start.ra.data" class="animated fadeIn col-sm-12">
+    <h2 style="text-align:center;padding-top:100px;color:#000;">Loading...<i class="fa fa-circle-o-notch" aria-hidden="false"></i></h2>
+  </div>
+  <div ng-if="start.ra.data"class="animated fadeIn row">
     <div class="col-sm-12">
       <h1 style="text-align:center;">{{ start.ra.data.Account__c }}</h1>
       <h2 style="text-align:center;"> Infrastructure Assessment</h2>

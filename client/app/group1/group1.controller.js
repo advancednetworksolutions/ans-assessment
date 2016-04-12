@@ -18,6 +18,7 @@ class Group1Controller {
     this.$scope.msgs = {};
     this.$scope.ra = {};
     this.progress = 0;
+
     this.$scope.section_title = 'Business Information';
     this.$http.defaults.headers.common['X-Assessment-Token'] = this.$cookies.get('ansaccess');
     if(!this.$routeParams.id){
@@ -30,6 +31,7 @@ class Group1Controller {
           .then(response => {
             this.$scope.ra = response;
             this.ra = this.$scope.ra;
+            this.$scope.savedChanges = false;
             /*this.$scope.$watch('ra.data.Desktops__c', function() {
               this.$scope = $scope;
               if((parseFloat(this.$scope.ra.data.Desktops__c) + parseFloat(this.$scope.ra.data.Laptops__c)) != parseInt(this.$scope.ra.data.Locations__c)){
@@ -50,10 +52,15 @@ class Group1Controller {
                 this.$scope.msgs.success = 'Everything adds up!';
               }
             });*/
-
+            this.$scope.$on('$routeChangeStart', function(event,next, current) {
+               if(!this.$scope.savedChanges){
+                 event.stopPropogation();
+               }
+             });
           });
       }
     }
+
 
 
 
@@ -68,6 +75,7 @@ class Group1Controller {
           Servers__c:this.$scope.ra.data.Servers__c,
           Business_Comments__c:this.$scope.ra.data.Business_Comments__c
         }
+        this.savedChanges = true;
         this.$http.put('api/assessments/'+this.$routeParams.id,body)
         .then(response => {
           this.$location.path('/group2');

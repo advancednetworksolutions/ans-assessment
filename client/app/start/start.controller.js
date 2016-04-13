@@ -37,7 +37,7 @@ class StartController {
   }
 
   start(){
-    this.$location.path('/group1');
+    this.$location.path('/company');
   }
 
 }

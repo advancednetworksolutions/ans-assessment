@@ -4,7 +4,7 @@
       <img src="http://www.ansolutions.com/wp-content/themes/ANS/images/header-logo.jpg" />
 
     </div>
-    <div style="height:91px;" class="col-md-4">
+    <div ng-if="group2.changesMade" style="height:91px;" class="col-md-4">
       <button style="margin-top:25px;float:right;" class="animated fadeIn btn btn-md btn-info" type="button" name="next" ng-click="group2.save()">Save and Next</button>
     </div>
   </div>
@@ -14,29 +14,27 @@
       <div class="list-group">
         <span href="#" class="list-group-item" style="color:#696969;background-color:#fff;border-color:#fff;">
               Progress {{ group2.progress }}%
-              <div class="progress">
-                <div class="progress-bar" animate="true" role="progressbar" aria-valuenow="{{ group1.progress }}"
-                      aria-valuemin="0" aria-valuemax="100" style="width:{{ group2.progress }}%">
-                  </div>
+              <div class="meter">
+                  <span style="width:{{group2.progress}}%;"><span class="progress"></span></span>
               </div>
             </span>
-        <a href="/group1?id={{group2.ra.data.Id}}" class="list-group-item">
-          <i>Company Overview</i>
+        <a href="/company?id={{group2.ra.data.Id}}" class="list-group-item">
+          Company Overview
         </a>
         <a href="" class="active list-group-item">
-          <i>Technology Planning</i>
+          Technology Planning
         </a>
-        <a href="/group3?id={{group2.ra.data.Id}}" class="list-group-item">
-          <i>Regulatory</i>
+        <a href="/regulatory?id={{group2.ra.data.Id}}" class="list-group-item">
+          Regulatory
         </a>
-        <a href="/group4?id={{group1.ra.data.Id}}" class="list-group-item">
-          <i>Network Infrastructure</i>
+        <a href="/group4?id={{group2.ra.data.Id}}" class="list-group-item">
+          Network Infrastructure
         </a>
         <a href="/group5" class="list-group-item">
-          <i>Cloud</i>
+          Cloud
         </a>
         <a href="/group6" class="list-group-item">
-          <i>Wireless</i>
+          Wireless
         </a>
       </div>
     </div>

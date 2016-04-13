@@ -4,49 +4,47 @@
     <div class="col-md-8">
       <img src="http://www.ansolutions.com/wp-content/themes/ANS/images/header-logo.jpg" />
     </div>
-    <div style="height:91px;" class="col-md-4">
-      <button style="margin-top:25px;float:right;" class="animated fadeIn btn btn-md btn-info" type="button" name="next" ng-click="group1.save()">Save and Next</button>
+    <div ng-if="company.changesMade" style="height:91px;" class="col-md-4">
+      <button  style="margin-top:25px;float:right;" class="animated fadeIn btn btn-md btn-info" type="button" name="next" ng-click="company.save()">Save and Next</button>
     </div>
   </div>
   <div style="padding-top:50px;" class="row panel panel-default row">
     <div class="col-md-3">
       <div class="list-group">
         <span href="#" class="list-group-item" style="color:#696969;background-color:#fff;border-color:#fff;">
-                  Progress {{ group1.progress }}%
-                  <div class="progress">
-                    <div class="progress-bar" animate="true" role="progressbar" aria-valuenow="{{ group1.progress }}"
-                          aria-valuemin="0" aria-valuemax="100" style="width:{{group1.progress}}%">
-                      </div>
+                  Progress {{ company.progress }}%
+                  <div class="meter">
+                      <span style="width:{{company.progress}}%;"><span class="progress"></span></span>
                   </div>
                 </span>
         <a href="" class="active list-group-item">
-          <i>Company Overview</i>
+          Company Overview
         </a>
-        <a href="/group2?id={{group1.ra.data.Id}}" class="list-group-item">
-          <i>Technology Planning</i>
+        <a href="/group2?id={{company.ra.data.Id}}" class="list-group-item">
+          Technology Planning
         </a>
-        <a href="/group3?id={{group1.ra.data.Id}}" class="list-group-item">
-          <i>Regulatory</i>
+        <a href="/regulatory?id={{company.ra.data.Id}}" class="list-group-item">
+          Regulatory
         </a>
-        <a href="/group4" class="list-group-item">
-          <i>Network Infrastructure</i>
+        <a href="/group4?id={{company.ra.data.Id}}" class="list-group-item">
+          Network Infrastructure
         </a>
         <a href="/group5" class="list-group-item">
-          <i>Group 5</i>
+          Cloud
         </a>
         <a href="/group6" class="list-group-item">
-          <i>Group 6</i>
+          Wireless
         </a>
       </div>
     </div>
-    <div ng-if="!group1.ra.data" class="animated fadeIn col-md-9">
+    <div ng-if="!company.ra.data" class="animated fadeIn col-md-9">
       <h2 style="text-align:center;padding-top:100px;color:#000;">Loading...<i class="fa fa-circle-o-notch" aria-hidden="false"></i></h2>
     </div>
-    <div ng-if="group1.ra.data" class="animated fadeIn col-md-9">
+    <div ng-if="company.ra.data" class="animated fadeIn col-md-9">
       <div class="row">
         <div class="col-xs-12">
           <h3 style="padding-bottom:20px;text-align:center;">{{ section_title }}</h3>
-          <p class="animated fadeIn" style="color:#FF4500;text-align:center;" ng-if="msgs.error && group1.ra.data.Locations__c">
+          <p class="animated fadeIn" style="color:#FF4500;text-align:center;" ng-if="msgs.error && company.ra.data.Locations__c">
             {{ msgs.error }} <i class="fa fa-close"></i>
           </p>
           <p class="animated fadeIn" style="color:#32CD32;text-align:center;" ng-if="msgs.success">
@@ -60,7 +58,7 @@
                 # of Locations
               </label>
               <div class="col-md-4">
-                <input id="Locations__c" class="form-control" type="number" name="Locations__c" ng-model="group1.ra.data.Locations__c" value=0>
+                <input id="Locations__c" class="form-control" type="number" name="Locations__c" ng-model="company.ra.data.Locations__c" value=0>
               </div>
             </div>
           </form>
@@ -72,7 +70,7 @@
                     # of Employees (breakdown per location in comments if possible)
                   </label>
                   <div class="col-md-4">
-                    <input id="Employees__c" class="form-control" type="number" name="Employees__c" ng-model="group1.ra.data.Employees__c" value="0">
+                    <input id="Employees__c" class="form-control" type="number" name="Employees__c" ng-model="company.ra.data.Employees__c" value="0">
                   </div>
                 </div>
               </form>
@@ -84,7 +82,7 @@
                     # of Servers
                   </label>
                   <div class="col-md-4">
-                    <input id="Servers__c" class="form-control" type="number" name="Servers__c" ng-model="group1.ra.data.Servers__c">
+                    <input id="Servers__c" class="form-control" type="number" name="Servers__c" ng-model="company.ra.data.Servers__c">
                   </div>
                 </div>
               </form>
@@ -96,7 +94,7 @@
                     Comments
                   </label>
                   <div class="col-md-4">
-                    <textarea rows="6" id="Business_Comments__c" class="form-control" name="Business_Comments__c" ng-model="group1.ra.data.Business_Comments__c"></textarea>
+                    <textarea rows="6" id="Business_Comments__c" class="form-control" name="Business_Comments__c" ng-model="company.ra.data.Business_Comments__c"></textarea>
                   </div>
                 </div>
               </form>

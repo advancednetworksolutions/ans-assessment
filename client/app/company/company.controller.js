@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-class Group1Controller {
+class CompanyController {
   //start-non-standard
   user = {};
   errors = {};
@@ -18,7 +18,8 @@ class Group1Controller {
     this.$scope.msgs = {};
     this.$scope.ra = {};
     this.progress = 0;
-
+    this.$scope.savedChanges = true;
+    this.changesMade = false;
     this.$scope.section_title = 'Business Information';
     this.$http.defaults.headers.common['X-Assessment-Token'] = this.$cookies.get('ansaccess');
     if(!this.$routeParams.id){
@@ -31,30 +32,25 @@ class Group1Controller {
           .then(response => {
             this.$scope.ra = response;
             this.ra = this.$scope.ra;
-            this.$scope.savedChanges = false;
-            /*this.$scope.$watch('ra.data.Desktops__c', function() {
-              this.$scope = $scope;
-              if((parseFloat(this.$scope.ra.data.Desktops__c) + parseFloat(this.$scope.ra.data.Laptops__c)) != parseInt(this.$scope.ra.data.Locations__c)){
-                this.$scope.msgs.success = '';
-                this.$scope.msgs.error = 'Laptops and desktops must add up to the total workstation count';
-              }else{
-                this.$scope.msgs.error = '';
-                this.$scope.msgs.success = 'Everything adds up!';
+
+            var vm = this;
+            this.$scope.$watch('ra.data', function(newVal,oldVal) {
+              console.log(oldVal);
+              console.log(newVal);
+              if(newVal != oldVal){
+                vm.$scope.savedChanges = false;
+                vm.changesMade = true;
+                console.log(vm.$scope.savedChanges);
+                console.log(vm.$scope.changesMade);
               }
-            });*/
-            /*this.$scope.$watch('ra.data.Laptops__c', function() {
-              console.log(this.$scope.ra.data.Laptops__c);
-              if((parseFloat(this.$scope.ra.data.Desktops__c) + parseFloat(this.$scope.ra.data.Laptops__c)) != parseInt(this.$scope.ra.data.Locations__c)){
-                this.$scope.msgs.success = '';
-                this.$scope.msgs.error = 'Laptops and desktops must add up to the total workstation count';
-              }else{
-                this.$scope.msgs.error = '';
-                this.$scope.msgs.success = 'Everything adds up!';
-              }
-            });*/
+            },true);
+
             this.$scope.$on('$routeChangeStart', function(event,next, current) {
-               if(!this.$scope.savedChanges){
-                 event.stopPropogation();
+               if(!vm.$scope.savedChanges){
+                 var r = confirm('You have unsaved changes! Would you still like to leave this page?');
+                 if (r == false) {
+                   event.preventDefault();
+                  }
                }
              });
           });
@@ -75,7 +71,8 @@ class Group1Controller {
           Servers__c:this.$scope.ra.data.Servers__c,
           Business_Comments__c:this.$scope.ra.data.Business_Comments__c
         }
-        this.savedChanges = true;
+        this.$scope.savedChanges = true;
+        this.$scope.changesMade = false;
         this.$http.put('api/assessments/'+this.$routeParams.id,body)
         .then(response => {
           this.$location.path('/group2');
@@ -88,5 +85,5 @@ class Group1Controller {
 }
 
 angular.module('rappApp')
-  .controller('Group1Ctrl', Group1Controller);
+  .controller('CompanyCtrl', CompanyController);
 })();

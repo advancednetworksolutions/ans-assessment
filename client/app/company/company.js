@@ -3,10 +3,10 @@
 angular.module('rappApp')
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/group1', {
-        templateUrl: 'app/group1/group1.html',
-        controller: 'Group1Ctrl',
-        controllerAs: 'group1',
+      .when('/company', {
+        templateUrl: 'app/company/company.html',
+        controller: 'CompanyCtrl',
+        controllerAs: 'company',
         authenticate: 'user'
       });
   });

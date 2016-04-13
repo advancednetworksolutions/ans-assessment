@@ -18,6 +18,8 @@ class Group2Controller {
     this.$scope.msgs = {};
     this.$scope.ra = {};
     this.progress = 5;
+    this.$scope.savedChanges = true;
+    this.changesMade = false;
     this.$scope.section_title = 'Technology Planning and Major Projects';
     this.$http.defaults.headers.common['X-Assessment-Token'] = this.$cookies.get('ansaccess');
     if(!this.$routeParams.id){
@@ -31,16 +33,34 @@ class Group2Controller {
 
             this.$scope.ra = response;
             this.ra = this.$scope.ra;
+            var vm = this;
+            this.$scope.$watch('ra.data', function(newVal,oldVal) {
+              console.log(oldVal);
+              console.log(newVal);
+              if(newVal != oldVal){
+                vm.$scope.savedChanges = false;
+                vm.changesMade = true;
+                console.log(vm.$scope.savedChanges);
+                console.log(vm.$scope.changesMade);
+              }
+            },true);
 
+            this.$scope.$on('$routeChangeStart', function(event,next, current) {
+               if(!vm.$scope.savedChanges){
+                 var r = confirm('You have unsaved changes! Would you still like to leave this page?');
+                 if (r == false) {
+                   event.preventDefault();
+                  }
+               }
+             });
           });
       }
     }
-
-
-
   }
 
   save(){
+    this.$scope.savedChanges = true;
+    this.$scope.changesMade = false;
     //if((parseFloat(this.$scope.ra.data.Desktops__c) + parseFloat(this.$scope.ra.data.Laptops__c)) != parseInt(this.$scope.ra.data.Workstations__c)){
     if(this.$scope.ra.data.Hardware_Under_Warranty__c == "true"){
       var body = {
@@ -62,8 +82,9 @@ class Group2Controller {
 
         this.$http.put('api/assessments/'+this.$routeParams.id,body)
         .then(response => {
-          alert('Assessment saved');
-          //this.$location.path('/group3');
+          //alert('Assessment saved');
+          //console.log(response);
+          this.$location.path('/regulatory');
       });
     //}else{
       //alert('The Laptops and Desktops need to add up to the Workstations');

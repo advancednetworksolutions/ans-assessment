@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: Group1Ctrl', function () {
+describe('Controller: CompanyCtrl', function () {
 
   // load the controller's module
   beforeEach(module('rappApp'));
@@ -10,7 +10,7 @@ describe('Controller: Group1Ctrl', function () {
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    Group1Ctrl = $controller('Group1Ctrl', {
+    Group1Ctrl = $controller('CompanyCtrl', {
       $scope: scope
     });
   }));
